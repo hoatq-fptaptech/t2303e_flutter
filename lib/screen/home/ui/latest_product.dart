@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t2303e_flutter/model/product_list.dart';
+import 'package:dio/dio.dart';
 class LatestProduct extends StatefulWidget{
   const LatestProduct({Key? key}) : super(key: key);
 
@@ -29,7 +30,7 @@ class _LatestProductState extends State<LatestProduct>{
 
   @override
   Widget build(BuildContext context) {
-    return data??Column(
+    return data?Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Latest Products"),
@@ -47,6 +48,6 @@ class _LatestProductState extends State<LatestProduct>{
           ),
         )
       ],
-    )
+    ):Text("Have no data!")
   }
 }
