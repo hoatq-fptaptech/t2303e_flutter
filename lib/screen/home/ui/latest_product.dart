@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:t2303e_flutter/model/product_list.dart';
 import 'package:dio/dio.dart';
+import 'package:t2303e_flutter/screen/home/ui/product_item.dart';
 class LatestProduct extends StatefulWidget{
   const LatestProduct({Key? key}) : super(key: key);
 
+  @override
+  _LatestProductState createState()=> _LatestProductState();
 }
 class _LatestProductState extends State<LatestProduct>{
-  late ProductList data;
+  late List<Products> data = [];
 
   Future<void> _fetchProducts() async {
     try{
       const url = "https://dummyjson.com/products?limit=12";
       Response rs = await Dio().get(url);
       // convert to Model object
-      ProductList pl = ProductList.fromJson(rs.data);
+      ProductList pl =  ProductList.fromJson(rs.data);
       setState(() {
-        data = pl;
+        data = pl.products??[];
       });
     }catch(e){
 
@@ -30,24 +33,24 @@ class _LatestProductState extends State<LatestProduct>{
 
   @override
   Widget build(BuildContext context) {
-    return data?Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Latest Products"),
         Container(
-          height: 260,
+          height: 280,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: data.products.length,
+              itemCount: data.length,
               itemBuilder: (context, index){
                 return Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Text(data.products[index].title)
-                )
+                    child: ProductItem(product: data[index])
+                );
               }
           ),
         )
       ],
-    ):Text("Have no data!")
+    );
   }
 }
