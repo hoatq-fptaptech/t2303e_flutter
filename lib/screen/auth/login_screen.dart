@@ -9,7 +9,7 @@ class LoginScreen extends StatefulWidget{
 class _StateLogin extends State<LoginScreen>{
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  
+  bool _obscureText = true;
   _login() async {
     // get email
     print(emailController.text);
@@ -63,9 +63,20 @@ class _StateLogin extends State<LoginScreen>{
             ),
             TextField(
               controller: passwordController,
-              decoration: const InputDecoration(
+              obscureText: _obscureText,
+              decoration: InputDecoration(
                   border: UnderlineInputBorder(),
-                  labelText: "Password"
+                  labelText: "Password",
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  ),
               ),
             ),
             Padding(
