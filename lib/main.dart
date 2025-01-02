@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t2303e_flutter/my_page.dart';
-
+import 'package:t2303e_flutter/screen/auth/login_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyPage(),
+      home: const LoginScreen(),
     );
   }
 }
