@@ -34,11 +34,11 @@ class _StateLogin extends State<LoginScreen>{
     // delaying the user experience is a bad design practice!
     // ignore_for_file: avoid_print
     print('ready in 3...');
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     print('ready in 2...');
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     print('ready in 1...');
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     print('go!');
     FlutterNativeSplash.remove();
   }
